@@ -1,0 +1,14 @@
+# Project files
+*~
+.DS_Store
+build
+DerivedData
+xcuserdata
+*.xcworkspace
+*.xcuserdatad
+
+# Prevent to accidentally add IDA SDK
+idasdk/*
+hexrays_sdk/*
+idasdk*.zip
+
