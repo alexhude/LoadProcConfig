@@ -18,6 +18,14 @@ static netnode helper;
 char device[MAXSTR] = "";
 char cfgfile[QMAXFILE];
 
+#ifdef _WIN32
+	char dir_sep = '\\';
+	char dir_up[] = "..\\";
+#else
+	char dir_sep = '/';
+	char dir_up[] "../";
+#endif
+
 //--------------------------------------------------------------------------
 
 #include <name.hpp>
@@ -53,11 +61,11 @@ inline void get_cfg_filename(char *buf, size_t bufsize, bool user = false)
 		// find common base and generate path to it from the source
 		while (qstrstr(filename, cfg_path) == nullptr)
 		{
-			char* slash_pos = qstrrchr(cfg_path, '/');
+			char* slash_pos = qstrrchr(cfg_path, dir_sep);
 			if (slash_pos == nullptr)
 				break;
 
-			qstrncat(buf, "../", bufsize);
+			qstrncat(buf, dir_up, bufsize);
 			slash_pos[0] = 0;
 			back_cnt++;
 		}
