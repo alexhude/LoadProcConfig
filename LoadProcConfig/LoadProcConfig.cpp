@@ -31,35 +31,38 @@ static ioport_t *ports = NULL;
 
 inline void get_cfg_filename(char *buf, size_t bufsize, bool user = false)
 {
-	buf[0] = 0;
-	
+	buf[0] = '\0';
+
 	if (user == true)
 	{
 		int back_cnt = 0;
 		size_t base_offset = 0;
 
 		char* filename = askfile2_c(false, nullptr, "*.cfg", "Load Processor Configuration");
-		
+
+		if (nullptr == filename)
+			return;
+
 		// choose_ioport_device() only supports path relative to 'cfg' folder in IDA
 		// therefore we need to generate it from our destination path
-		
+
 		// get 'cfg' path
 		char cfg_path[QMAXFILE] = {0};
 		qstrncpy(cfg_path, idadir(CFG_SUBDIR), QMAXFILE);
-		
+
 		// find common base and generate path to it from the source
 		while (qstrstr(filename, cfg_path) == nullptr)
 		{
 			char* slash_pos = qstrrchr(cfg_path, '/');
 			if (slash_pos == nullptr)
 				break;
-			
+
 			qstrncat(buf, "../", bufsize);
 			slash_pos[0] = 0;
 			back_cnt++;
 		}
 		base_offset = strlen(cfg_path);
-		
+
 		// create relative path to destination
 		qstrncat(buf, filename + base_offset + 1, bufsize); // exclude left '/' from path
 	}
@@ -77,21 +80,21 @@ void run(int)
 {
 	get_cfg_filename(cfgfile, QMAXFILE, true);
 
-	if (cfgfile[0] == 0)
+	if (strlen(cfgfile) == 0)
 		return;
-	
+
 	msg("ProcConf: loading config \"%s\"...\n", cfgfile);
-	
+
 	if ( choose_ioport_device(cfgfile, device, sizeof(device), NULL) )
 	{
 		msg("ProcConf: ... done\n");
 		if (qstrcmp(device, "NONE") != 0)
 		{
 			msg("ProcConf: device chosen \"%s\"\n", device);
-			
+
 			int resp_info = IORESP_ALL;
 			display_infotype_dialog(IORESP_ALL, &resp_info, cfgfile);
-			
+
 			set_device_name(device, resp_info);
 			noUsed(0, BADADDR); // reanalyze program
 		}
@@ -129,7 +132,7 @@ int idaapi hook(void* user_data, int notification_code, va_list va)
 		default:
 			break;
 	}
-	
+
 	return 0;
 }
 

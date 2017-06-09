@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoadProcConfig", "LoadProcConfig.vcxproj", "{37C8BD54-7DEA-40CF-8681-EF042E37B040}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		IDA (Release)|x64 = IDA (Release)|x64
+		IDA (Release)|x86 = IDA (Release)|x86
+		IDA 64 (Release)|x64 = IDA 64 (Release)|x64
+		IDA 64 (Release)|x86 = IDA 64 (Release)|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37C8BD54-7DEA-40CF-8681-EF042E37B040}.IDA (Release)|x64.ActiveCfg = IDA (Release)|x64
+		{37C8BD54-7DEA-40CF-8681-EF042E37B040}.IDA (Release)|x64.Build.0 = IDA (Release)|x64
+		{37C8BD54-7DEA-40CF-8681-EF042E37B040}.IDA (Release)|x86.ActiveCfg = IDA (Release)|Win32
+		{37C8BD54-7DEA-40CF-8681-EF042E37B040}.IDA (Release)|x86.Build.0 = IDA (Release)|Win32
+		{37C8BD54-7DEA-40CF-8681-EF042E37B040}.IDA 64 (Release)|x64.ActiveCfg = IDA 64 (Release)|x64
+		{37C8BD54-7DEA-40CF-8681-EF042E37B040}.IDA 64 (Release)|x64.Build.0 = IDA 64 (Release)|x64
+		{37C8BD54-7DEA-40CF-8681-EF042E37B040}.IDA 64 (Release)|x86.ActiveCfg = IDA 64 (Release)|Win32
+		{37C8BD54-7DEA-40CF-8681-EF042E37B040}.IDA 64 (Release)|x86.Build.0 = IDA 64 (Release)|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

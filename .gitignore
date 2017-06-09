@@ -12,3 +12,10 @@ idasdk/*
 hexrays_sdk/*
 idasdk*.zip
 
+# Windows project files
+*.VC.db
+*.VC.opendb
+*.lib
+*.exp
+*.pdb
+*.vs
