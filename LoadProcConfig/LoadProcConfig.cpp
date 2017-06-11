@@ -23,7 +23,7 @@ char cfgfile[QMAXFILE];
 	char dir_up[] = "..\\";
 #else
 	char dir_sep = '/';
-	char dir_up[] "../";
+	char dir_up[] = "../";
 #endif
 
 //--------------------------------------------------------------------------
