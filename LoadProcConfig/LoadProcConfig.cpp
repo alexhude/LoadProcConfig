@@ -3,7 +3,7 @@
 // Load Processor Config
 //
 // Created by Alexander Hude on 31/03/16.
-// Copyright (c) 2017 Fried Apple Team. All rights reserved.
+// Copyright (c) 2017 Alexander Hude. All rights reserved.
 //
 
 #include <ida.hpp>
@@ -11,11 +11,35 @@
 #include <loader.hpp>
 #include <auto.hpp>
 
+#if (IDA_SDK_VERSION < 700) && defined(__X64__)
+	#error Incompatible SDK version. Please use SDK 7.0 or higher
+#elif (IDA_SDK_VERSION >= 700) && !defined(__X64__)
+	#error Incompatible SDK version. Please use SDK 6.95 or lower
+#endif
+
+#if IDA_SDK_VERSION >= 700
+	#define idaapi_hook_cb_ret_t							ssize_t
+
+	#define IDAAPI_AskFile(save, defdir, filter, format)	ask_file(save, filter, format)
+	#define IDAAPI_PlanRange								plan_range
+	#define idaapi_out_operand								ev_out_operand
+#else
+	#define idaapi_hook_cb_ret_t							int
+
+	#define IDAAPI_AskFile(save, defdir, filter, format)	askfile2_c(save, defdir, filter, format)
+	#define IDAAPI_PlanRange								noUsed
+	#define idaapi_out_operand								custom_outop
+#endif
+
 // The netnode helper.
 // Using this node we will save current configuration information in the IDA database.
 static netnode helper;
 
+#if IDA_SDK_VERSION >= 700
+qstring device;
+#else
 char device[MAXSTR] = "";
+#endif
 char cfgfile[QMAXFILE];
 
 #ifdef _WIN32
@@ -32,8 +56,12 @@ char cfgfile[QMAXFILE];
 #include <offset.hpp>
 #include <diskio.hpp>
 
-static size_t numports = 0;
-static ioport_t *ports = NULL;
+#if IDA_SDK_VERSION >= 700
+	static ioports_t ports;
+#else
+	static size_t numports = 0;
+	static ioport_t *ports = NULL;
+#endif
 
 #define NO_GET_CFG_PATH
 
@@ -46,7 +74,7 @@ inline void get_cfg_filename(char *buf, size_t bufsize, bool user = false)
 		int back_cnt = 0;
 		size_t base_offset = 0;
 
-		char* filename = askfile2_c(false, nullptr, "*.cfg", "Load Processor Configuration");
+		char* filename = IDAAPI_AskFile(false, nullptr, "*.cfg", "Load Processor Configuration");
 
 		if (nullptr == filename)
 			return;
@@ -84,6 +112,38 @@ inline void get_cfg_filename(char *buf, size_t bufsize, bool user = false)
 #include "../module/iocommon.cpp"
 
 //--------------------------------------------------------------------------
+#if IDA_SDK_VERSION >= 700
+bool run(size_t)
+{
+	get_cfg_filename(cfgfile, QMAXFILE, true);
+	
+	if (strlen(cfgfile) == 0)
+		return false;
+	
+	msg("ProcConf: loading config \"%s\"...\n", cfgfile);
+	
+	if ( choose_ioport_device(&device, cfgfile, NULL) )
+	{
+		msg("ProcConf: ... done\n");
+		if (qstrcmp(device.c_str(), "NONE") != 0)
+		{
+			msg("ProcConf: device chosen \"%s\"\n", device.c_str());
+			
+			int resp_info = IORESP_ALL;
+			display_infotype_dialog(IORESP_ALL, &resp_info, cfgfile);
+			
+			set_device_name(device.c_str(), resp_info);
+			IDAAPI_PlanRange(0, BADADDR); // reanalyze program
+		}
+	}
+	else
+	{
+		msg("ProcConf: ... failed\n");
+	}
+	
+	return true;
+}
+#else
 void run(int)
 {
 	get_cfg_filename(cfgfile, QMAXFILE, true);
@@ -104,7 +164,7 @@ void run(int)
 			display_infotype_dialog(IORESP_ALL, &resp_info, cfgfile);
 
 			set_device_name(device, resp_info);
-			noUsed(0, BADADDR); // reanalyze program
+			IDAAPI_PlanRange(0, BADADDR); // reanalyze program
 		}
 	}
 	else
@@ -112,19 +172,37 @@ void run(int)
 		msg("ProcConf: ... failed\n");
 	}
 }
+#endif
 
 //--------------------------------------------------------------------------
 
 const ioport_t *find_sym(ea_t address)
 {
+#if IDA_SDK_VERSION >= 700
+	return find_ioport(ports, address);
+#else
 	return find_ioport(ports, numports, address);
+#endif
 }
 
-int idaapi hook(void* user_data, int notification_code, va_list va)
+idaapi_hook_cb_ret_t idaapi hook(void* user_data, int notification_code, va_list va)
 {
 	switch (notification_code) {
-		case processor_t::custom_outop:
+		case processor_t::idaapi_out_operand:
 		{
+		#if IDA_SDK_VERSION >= 700
+			outctx_t* ctx = va_arg(va, outctx_t *);
+			op_t* op = va_arg(va, op_t *);
+			if (op->type == o_imm)
+			{
+				const ioport_t * port = find_sym(op->value);
+				if ( port != NULL )
+				{
+					ctx->out_line(port->name.c_str(), COLOR_IMPNAME);
+					return 1;
+				}
+			}
+		#else
 			op_t* op = va_arg(va, op_t *);
 			if (op->type == o_imm)
 			{
@@ -135,6 +213,7 @@ int idaapi hook(void* user_data, int notification_code, va_list va)
 					return 2;
 				}
 			}
+		#endif
 			break;
 		}
 		default:

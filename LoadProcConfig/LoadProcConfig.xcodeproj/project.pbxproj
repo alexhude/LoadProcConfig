@@ -7,11 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A56996F1F734B0000EBB661 /* LoadProcConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F88417BE564100B820A5 /* LoadProcConfig.cpp */; };
+		8A5699791F734B8D00EBB661 /* LoadProcConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F88417BE564100B820A5 /* LoadProcConfig.cpp */; };
 		FA9B0F791C3D277D008E47E4 /* LoadProcConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F88417BE564100B820A5 /* LoadProcConfig.cpp */; };
 		FAA9F88817BE564100B820A5 /* LoadProcConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F88417BE564100B820A5 /* LoadProcConfig.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8A5699721F734B0000EBB661 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A56997C1F734B8D00EBB661 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA9B0F741C3D211A008E47E4 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,12 +53,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8A5699761F734B0000EBB661 /* LoadProcConfig.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = LoadProcConfig.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A5699801F734B8D00EBB661 /* LoadProcConfig64.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = LoadProcConfig64.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0D7B0016F6F49300EF3B9D /* LoadProcConfig.pmc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = LoadProcConfig.pmc; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9B0F831C3D277D008E47E4 /* LoadProcConfig.pmc64 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = LoadProcConfig.pmc64; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA9F88417BE564100B820A5 /* LoadProcConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadProcConfig.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8A5699701F734B0000EBB661 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A56997A1F734B8D00EBB661 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA0D7AFD16F6F49300EF3B9D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -70,6 +106,8 @@
 			children = (
 				FA0D7B0016F6F49300EF3B9D /* LoadProcConfig.pmc */,
 				FA9B0F831C3D277D008E47E4 /* LoadProcConfig.pmc64 */,
+				8A5699761F734B0000EBB661 /* LoadProcConfig.dylib */,
+				8A5699801F734B8D00EBB661 /* LoadProcConfig64.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +130,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		8A5699711F734B0000EBB661 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A56997B1F734B8D00EBB661 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA0D7AFE16F6F49300EF3B9D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -109,9 +161,45 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		FA0D7AFF16F6F49300EF3B9D /* LoadProcConfig_32 */ = {
+		8A56996D1F734B0000EBB661 /* LoadProcConfig_IDA7_EA32 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA0D7B0416F6F49300EF3B9D /* Build configuration list for PBXNativeTarget "LoadProcConfig_32" */;
+			buildConfigurationList = 8A5699731F734B0000EBB661 /* Build configuration list for PBXNativeTarget "LoadProcConfig_IDA7_EA32" */;
+			buildPhases = (
+				8A56996E1F734B0000EBB661 /* Sources */,
+				8A5699701F734B0000EBB661 /* Frameworks */,
+				8A5699711F734B0000EBB661 /* Headers */,
+				8A5699721F734B0000EBB661 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LoadProcConfig_IDA7_EA32;
+			productName = fr;
+			productReference = 8A5699761F734B0000EBB661 /* LoadProcConfig.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		8A5699771F734B8D00EBB661 /* LoadProcConfig_IDA7_EA64 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A56997D1F734B8D00EBB661 /* Build configuration list for PBXNativeTarget "LoadProcConfig_IDA7_EA64" */;
+			buildPhases = (
+				8A5699781F734B8D00EBB661 /* Sources */,
+				8A56997A1F734B8D00EBB661 /* Frameworks */,
+				8A56997B1F734B8D00EBB661 /* Headers */,
+				8A56997C1F734B8D00EBB661 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LoadProcConfig_IDA7_EA64;
+			productName = fr;
+			productReference = 8A5699801F734B8D00EBB661 /* LoadProcConfig64.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		FA0D7AFF16F6F49300EF3B9D /* LoadProcConfig_IDA6_EA32 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA0D7B0416F6F49300EF3B9D /* Build configuration list for PBXNativeTarget "LoadProcConfig_IDA6_EA32" */;
 			buildPhases = (
 				FA0D7AFC16F6F49300EF3B9D /* Sources */,
 				FA0D7AFD16F6F49300EF3B9D /* Frameworks */,
@@ -122,14 +210,14 @@
 			);
 			dependencies = (
 			);
-			name = LoadProcConfig_32;
+			name = LoadProcConfig_IDA6_EA32;
 			productName = fr;
 			productReference = FA0D7B0016F6F49300EF3B9D /* LoadProcConfig.pmc */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		FA9B0F761C3D277D008E47E4 /* LoadProcConfig_64 */ = {
+		FA9B0F761C3D277D008E47E4 /* LoadProcConfig_IDA6_EA64 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA9B0F801C3D277D008E47E4 /* Build configuration list for PBXNativeTarget "LoadProcConfig_64" */;
+			buildConfigurationList = FA9B0F801C3D277D008E47E4 /* Build configuration list for PBXNativeTarget "LoadProcConfig_IDA6_EA64" */;
 			buildPhases = (
 				FA9B0F771C3D277D008E47E4 /* Sources */,
 				FA9B0F7B1C3D277D008E47E4 /* Frameworks */,
@@ -140,7 +228,7 @@
 			);
 			dependencies = (
 			);
-			name = LoadProcConfig_64;
+			name = LoadProcConfig_IDA6_EA64;
 			productName = fr;
 			productReference = FA9B0F831C3D277D008E47E4 /* LoadProcConfig.pmc64 */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -166,13 +254,31 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FA0D7AFF16F6F49300EF3B9D /* LoadProcConfig_32 */,
-				FA9B0F761C3D277D008E47E4 /* LoadProcConfig_64 */,
+				FA0D7AFF16F6F49300EF3B9D /* LoadProcConfig_IDA6_EA32 */,
+				FA9B0F761C3D277D008E47E4 /* LoadProcConfig_IDA6_EA64 */,
+				8A56996D1F734B0000EBB661 /* LoadProcConfig_IDA7_EA32 */,
+				8A5699771F734B8D00EBB661 /* LoadProcConfig_IDA7_EA64 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8A56996E1F734B0000EBB661 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A56996F1F734B0000EBB661 /* LoadProcConfig.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A5699781F734B8D00EBB661 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A5699791F734B8D00EBB661 /* LoadProcConfig.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA0D7AFC16F6F49300EF3B9D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -192,6 +298,110 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		8A5699741F734B0000EBB661 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					__MAC__,
+					__IDP__,
+					__PLUGIN__,
+					__X64__,
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../idasdk/module\"",
+					"\"$(SRCROOT)/../idasdk/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_gcc_32\"";
+				OTHER_LDFLAGS = "-lida";
+				PRODUCT_NAME = LoadProcConfig;
+				STRIP_STYLE = debugging;
+			};
+			name = Debug;
+		};
+		8A5699751F734B0000EBB661 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				DEAD_CODE_STRIPPING = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__MAC__,
+					__IDP__,
+					__PLUGIN__,
+					__X64__,
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../idasdk/module\"",
+					"\"$(SRCROOT)/../idasdk/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_gcc_32\"";
+				OTHER_LDFLAGS = "-lida";
+				PRODUCT_NAME = LoadProcConfig;
+				STRIP_STYLE = all;
+			};
+			name = Release;
+		};
+		8A56997E1F734B8D00EBB661 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					__MAC__,
+					__IDP__,
+					__PLUGIN__,
+					__EA64__,
+					__X64__,
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../idasdk/module\"",
+					"\"$(SRCROOT)/../idasdk/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_gcc_64\"";
+				OTHER_LDFLAGS = "-lida64";
+				PRODUCT_NAME = LoadProcConfig64;
+				STRIP_STYLE = debugging;
+			};
+			name = Debug;
+		};
+		8A56997F1F734B8D00EBB661 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				DEAD_CODE_STRIPPING = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__MAC__,
+					__IDP__,
+					__PLUGIN__,
+					__X64__,
+					__EA64__,
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../idasdk/module\"",
+					"\"$(SRCROOT)/../idasdk/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_gcc_64\"";
+				OTHER_LDFLAGS = "-lida64";
+				PRODUCT_NAME = LoadProcConfig64;
+				STRIP_STYLE = all;
+			};
+			name = Release;
+		};
 		FA0D7B0216F6F49300EF3B9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -309,7 +519,7 @@
 					__MAC__,
 					__IDP__,
 					__PLUGIN__,
-					__X64__,
+					__EA64__,
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
@@ -335,7 +545,7 @@
 					__MAC__,
 					__IDP__,
 					__PLUGIN__,
-					__X64__,
+					__EA64__,
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
@@ -352,6 +562,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8A5699731F734B0000EBB661 /* Build configuration list for PBXNativeTarget "LoadProcConfig_IDA7_EA32" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A5699741F734B0000EBB661 /* Debug */,
+				8A5699751F734B0000EBB661 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A56997D1F734B8D00EBB661 /* Build configuration list for PBXNativeTarget "LoadProcConfig_IDA7_EA64" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A56997E1F734B8D00EBB661 /* Debug */,
+				8A56997F1F734B8D00EBB661 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FA0D7AFB16F6F49300EF3B9D /* Build configuration list for PBXProject "LoadProcConfig" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -361,7 +589,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA0D7B0416F6F49300EF3B9D /* Build configuration list for PBXNativeTarget "LoadProcConfig_32" */ = {
+		FA0D7B0416F6F49300EF3B9D /* Build configuration list for PBXNativeTarget "LoadProcConfig_IDA6_EA32" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA0D7B0516F6F49300EF3B9D /* Debug */,
@@ -370,7 +598,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA9B0F801C3D277D008E47E4 /* Build configuration list for PBXNativeTarget "LoadProcConfig_64" */ = {
+		FA9B0F801C3D277D008E47E4 /* Build configuration list for PBXNativeTarget "LoadProcConfig_IDA6_EA64" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA9B0F811C3D277D008E47E4 /* Debug */,
