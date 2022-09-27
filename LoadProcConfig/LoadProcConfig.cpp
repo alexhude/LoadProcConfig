@@ -36,11 +36,11 @@
 static netnode helper;
 
 #if IDA_SDK_VERSION >= 700
-qstring device;
+qstring g_device;
 #else
-char device[MAXSTR] = "";
+char g_device[MAXSTR] = "";
 #endif
-char cfgfile[QMAXFILE];
+char g_cfgfile[QMAXFILE];
 
 #ifdef _WIN32
 	char dir_sep = '\\';
@@ -104,35 +104,54 @@ inline void get_cfg_filename(char *buf, size_t bufsize, bool user = false)
 	}
 	else
 	{
-		qstrncpy(buf, cfgfile, bufsize);
+		qstrncpy(buf, g_cfgfile, bufsize);
 	}
 }
 
 // include IO common routines (such as set_device_name, apply_config_file, etc..)
-#include "../module/iocommon.cpp"
+#if IDA_SDK_VERSION >= 760
+    #include "../module/iohandler.hpp"
+    struct lpc_iohandler_t : public iohandler_t {
+        lpc_iohandler_t(netnode &nn) : iohandler_t(nn) {}
+        void get_cfg_filename(char *buf, size_t bufsize) override {
+            qstrncpy(buf, g_cfgfile, bufsize);
+        }
+    };
+#else
+    #include "../module/iocommon.cpp"
+#endif
 
 //--------------------------------------------------------------------------
 #if IDA_SDK_VERSION >= 700
 bool run(size_t)
 {
-	get_cfg_filename(cfgfile, QMAXFILE, true);
+#if IDA_SDK_VERSION >= 760
+    netnode iohelper;
+    lpc_iohandler_t ioh = lpc_iohandler_t(iohelper);
+#endif
+    
+	get_cfg_filename(g_cfgfile, QMAXFILE, true);
 	
-	if (strlen(cfgfile) == 0)
+	if (strlen(g_cfgfile) == 0)
 		return false;
 	
-	msg("ProcConf: loading config \"%s\"...\n", cfgfile);
+	msg("ProcConf: loading config \"%s\"...\n", g_cfgfile);
 	
-	if ( choose_ioport_device(&device, cfgfile, NULL) )
+	if ( choose_ioport_device(&g_device, g_cfgfile, NULL) )
 	{
 		msg("ProcConf: ... done\n");
-		if (qstrcmp(device.c_str(), "NONE") != 0)
+		if (qstrcmp(g_device.c_str(), "NONE") != 0)
 		{
-			msg("ProcConf: device chosen \"%s\"\n", device.c_str());
+			msg("ProcConf: device chosen \"%s\"\n", g_device.c_str());
 			
 			int resp_info = IORESP_ALL;
-			display_infotype_dialog(IORESP_ALL, &resp_info, cfgfile);
-			
-			set_device_name(device.c_str(), resp_info);
+        #if IDA_SDK_VERSION >= 760
+			ioh.display_infotype_dialog(IORESP_ALL, &resp_info, g_cfgfile);
+            ioh.set_device_name(g_device.c_str(), resp_info);
+        #else
+            display_infotype_dialog(IORESP_ALL, &resp_info, g_cfgfile);
+            set_device_name(g_device.c_str(), resp_info);
+        #endif
 			IDAAPI_PlanRange(0, BADADDR); // reanalyze program
 		}
 	}
@@ -146,24 +165,24 @@ bool run(size_t)
 #else
 void run(int)
 {
-	get_cfg_filename(cfgfile, QMAXFILE, true);
+	get_cfg_filename(g_cfgfile, QMAXFILE, true);
 
-	if (strlen(cfgfile) == 0)
+	if (strlen(g_cfgfile) == 0)
 		return;
 
-	msg("ProcConf: loading config \"%s\"...\n", cfgfile);
+	msg("ProcConf: loading config \"%s\"...\n", g_cfgfile);
 
-	if ( choose_ioport_device(cfgfile, device, sizeof(device), NULL) )
+	if ( choose_ioport_device(g_cfgfile, g_device, sizeof(g_device), NULL) )
 	{
 		msg("ProcConf: ... done\n");
-		if (qstrcmp(device, "NONE") != 0)
+		if (qstrcmp(g_device, "NONE") != 0)
 		{
-			msg("ProcConf: device chosen \"%s\"\n", device);
+			msg("ProcConf: device chosen \"%s\"\n", g_device);
 
 			int resp_info = IORESP_ALL;
-			display_infotype_dialog(IORESP_ALL, &resp_info, cfgfile);
+			display_infotype_dialog(IORESP_ALL, &resp_info, g_cfgfile);
 
-			set_device_name(device, resp_info);
+			set_device_name(g_device, resp_info);
 			IDAAPI_PlanRange(0, BADADDR); // reanalyze program
 		}
 	}
@@ -224,7 +243,11 @@ idaapi_hook_cb_ret_t idaapi hook(void* user_data, int notification_code, va_list
 }
 
 //--------------------------------------------------------------------------
+#if IDA_SDK_VERSION >= 760
+plugmod_t *init(void)
+#else
 int init(void)
+#endif
 {
   hook_to_notification_point(HT_IDP, hook, NULL);
   return PLUGIN_KEEP;

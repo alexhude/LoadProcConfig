@@ -247,6 +247,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = FA0D7AF716F6F49300EF3B9D;
@@ -301,7 +302,7 @@
 		8A5699741F734B0000EBB661 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = x86_64;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -316,7 +317,7 @@
 					"\"$(SRCROOT)/../idasdk/module\"",
 					"\"$(SRCROOT)/../idasdk/include\"",
 				);
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_gcc_32\"";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_clang_32\"";
 				OTHER_LDFLAGS = "-lida";
 				PRODUCT_NAME = LoadProcConfig;
 				STRIP_STYLE = debugging;
@@ -326,7 +327,7 @@
 		8A5699751F734B0000EBB661 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = x86_64;
 				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = "";
@@ -342,7 +343,7 @@
 					"\"$(SRCROOT)/../idasdk/module\"",
 					"\"$(SRCROOT)/../idasdk/include\"",
 				);
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_gcc_32\"";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_clang_32\"";
 				OTHER_LDFLAGS = "-lida";
 				PRODUCT_NAME = LoadProcConfig;
 				STRIP_STYLE = all;
@@ -352,7 +353,7 @@
 		8A56997E1F734B8D00EBB661 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = x86_64;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -368,7 +369,7 @@
 					"\"$(SRCROOT)/../idasdk/module\"",
 					"\"$(SRCROOT)/../idasdk/include\"",
 				);
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_gcc_64\"";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_clang_64\"";
 				OTHER_LDFLAGS = "-lida64";
 				PRODUCT_NAME = LoadProcConfig64;
 				STRIP_STYLE = debugging;
@@ -378,7 +379,7 @@
 		8A56997F1F734B8D00EBB661 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = x86_64;
 				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = "";
@@ -395,7 +396,7 @@
 					"\"$(SRCROOT)/../idasdk/module\"",
 					"\"$(SRCROOT)/../idasdk/include\"",
 				);
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_gcc_64\"";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../idasdk/lib/x64_mac_clang_64\"";
 				OTHER_LDFLAGS = "-lida64";
 				PRODUCT_NAME = LoadProcConfig64;
 				STRIP_STYLE = all;
